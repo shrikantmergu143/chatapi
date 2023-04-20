@@ -21,7 +21,7 @@ const validateToken = (socket, req) =>{
     }catch(err){
         const socketError = "NOT_AUTHORIZED"
         return socketError;
-    }
+    } 
 }
 
 module.exports = {
