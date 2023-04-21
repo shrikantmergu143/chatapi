@@ -17,7 +17,7 @@ const validateToken = (socket, req) =>{
     const token = req?.url?.split("/")[2];
     try{
         const decode = jwt.verify(token, config.TOKEN_KEY);
-        return decode;
+        req.user = decode;
     }catch(err){
         const socketError = "NOT_AUTHORIZED"
         return socketError;

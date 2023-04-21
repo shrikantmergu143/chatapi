@@ -21,7 +21,8 @@ router.post("/login",  validator.body(loginSchema), authControllers.controllers.
 // router.post("/login",  validator.body(loginSchema), authControllers.controllers.postLogin);
 // 
 router.get("/test",  auth, (req, res)=>{
-    res.send("request")
+    console.log("req", req.user)
+    res.status(200).json({error:"Demis"});
 });
 
 module.exports = router;

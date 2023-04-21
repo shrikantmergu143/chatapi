@@ -19,17 +19,15 @@ const registerSocketServer = (server) =>{
   const socketServer = new WebSocket.Server({server});
 
   socketServer.on('connection', (socket, req) => {
-    const upgradeHeader = (req.headers.upgrade || '').split(',').map((s) => s.trim())
-    // socket.use((data, next) => {
-    //   // logic here
-    //   authSocket(data, next);
-    // });
-        const response = authSocket.validateToken(socket, req)
+    // Verify client connection token id is valid or not
+    const response = authSocket.validateToken(socket, req);
+
     if(response !== "NOT_AUTHORIZED"){
       newConnectionHandler(socket, socketServer);
-      // console.log("response", response)
-      socket.send(JSON.stringify(response));
+      // authentication successfull
+      socket.send(JSON.stringify({userDetails:req.user, messages:"web socket connected successfully"}));
     }else{
+      // invalid token comming from user
       socket.close();
     }
   });
