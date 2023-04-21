@@ -18,6 +18,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 //Register
 app.use("/api/auth", authRoutes);
+app.use("/api/user", authRoutes);
 
 const server = http.createServer(app, (req, res)=>{
   res.writeHead(200, { 'Content-Type': 'application/json' });
