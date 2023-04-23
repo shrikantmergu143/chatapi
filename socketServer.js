@@ -30,7 +30,7 @@ const registerSocketServer = (server) =>{
       // invalid token comming from user
       socket.close();
     }
-  });
+  }); 
 }
 
 
